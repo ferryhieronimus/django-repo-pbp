@@ -11,10 +11,11 @@
   {% endblock meta %}
 </head>
 
-<body class="vh-100" style="padding: 50px 40px">
+<body class="vh-100 d-flex flex-column justify-content-center align-items-center" style="padding: 50px 40px">
   <nav class="navbar bg-light fixed-top">
     <div class="container-fluid">
       <span class="navbar-brand mb-0 h1">Ferry</span>
+      <a class="navbar-brand mb-0 h1" href="{% url 'wishlist:logout' %}">Logout</a>
     </div>
   </nav>
   {% block content %}
