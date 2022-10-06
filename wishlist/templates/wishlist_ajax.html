@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<nav class="navbar bg-light fixed-top">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">{{nama}}</span>
+      <a class="navbar-brand mb-0 h1" href="{% url 'wishlist:logout' %}">Logout</a>
+    </div>
+</nav>
+<script>
+  $(document).ready(function () {
+    $.get("{% url 'wishlist:show_json' %}", function (data) {
+      $.each(data, function(index, value) {
+        $("#table-wishlist").append (
+          "<tr><td>" + 
+            value.fields.nama_barang + 
+            "</td><td>" + 
+              value.fields.harga_barang + 
+              "</td><td>" + 
+                value.fields.deskripsi +
+                "</td></tr>"
+        );
+      });
+    });
+  });
+</script>
+<table class="table table-success table-striped">
+    <tr>
+    <th>Nama Barang</th>
+    <th>Harga Barang</th>
+    <th>Deskripsi</th>
+    </tr>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    {% for barang in list_barang %}
+        <tr>
+            <th>{{barang.nama_barang}}</th>
+            <th>{{barang.harga_barang}}</th>
+            <th>{{barang.deskripsi}}</th>
+        </tr>
+{% endfor %}
+    
+</table>
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+{% endblock content %}
