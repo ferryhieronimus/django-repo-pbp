@@ -26,11 +26,10 @@ data_barang_wishlist = BarangWishlist.objects.all()
 @login_required(login_url='/wishlist/login/')
 def show_wishlist_ajax(request):
     context = {
-        'list_barang': data_barang_wishlist,
         'nama': 'Ferry',
         'last_login': request.COOKIES['last_login'],
     }
-    return render(request, "wishlist.html", context)
+    return render(request, "wishlist_ajax.html", context)
 
 data_barang_wishlist = BarangWishlist.objects.all()
 
